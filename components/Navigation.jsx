@@ -7,17 +7,11 @@ import {
 	Button,
 	Heading,
 	useDisclosure,
-	Modal,
-	ModalBody,
-	ModalContent,
-	ModalHeader,
-	ModalCloseButton,
-	FormControl,
-	FormLabel,
-	Input,
-	ModalFooter,
-	InputGroup,
-	InputRightElement
+	Menu,
+	MenuItem,
+	MenuButton,
+	MenuList,
+	Divider
 } from '@chakra-ui/react'
 
 export default function Navigation() {
@@ -32,8 +26,8 @@ export default function Navigation() {
 
 	return (
 		<div className="NavigationBar">
-				<Box p="5" pos="fixed" width="100vW">
-					<Flex mr="30" ml="30">
+				<Box p="5" pos="fixed" width="100vW" background="white" boxShadow="base" >
+					<Flex mr="300px" ml="300px" justifyContent="space-between">
 						<Box p="2">
 							<Heading size="md">YouDo</Heading>
 						</Box>
@@ -43,12 +37,25 @@ export default function Navigation() {
 						<Box p="2">
 							<Link>Pricing</Link>
 						</Box>
+						<Box p="2">
+							<Menu>
+								<MenuButton as={Link}>
+									Developers
+								</MenuButton>
+								<MenuList>
+									<MenuItem>API Documentation</MenuItem>
+									<MenuItem>API Getting Started Guide</MenuItem>
+									<MenuItem>API Source Code</MenuItem>
+								</MenuList>
+							</Menu>
+						</Box>
+
 						<Spacer />
 						<Box>
-							<Button colorScheme="yellow" mr="4" onClick={onOpenSignUp} ref={finalRefSignUp}>
+							<Button colorScheme="red" mr="4" onClick={onOpenSignUp} ref={finalRefSignUp}>
 								Sign Up
 							</Button>
-							<Button colorScheme="yellow">Log in</Button>
+							<Button colorScheme="twitter">Log in</Button>
 						</Box>
 					</Flex>
 				</Box>
