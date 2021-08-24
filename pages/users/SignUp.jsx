@@ -1,9 +1,19 @@
-import { Flex, Box, FormControl, FormLabel, Input, InputRightElement, InputGroup, Button, Divider, Heading, Text } from '@chakra-ui/react'
+import {
+	Flex,
+	Box,
+	Link,
+	Button,
+	Divider,
+	Heading,
+	Text,
+	FormErrorMessage
+} from '@chakra-ui/react'
 import React, { useState, set } from 'react'
 import { FacebookLogoSmall } from '../../icons/Facebook'
 import { GithubLogoSmall } from '../../icons/Github'
 import { GoogleLogoSmall } from '../../icons/Google'
 import { useForm } from "react-hook-form"
+import axios from 'axios'
 
 export default function SignUp() {
 	const [showPassword, setShowPassword] = useState(false)
@@ -16,72 +26,38 @@ export default function SignUp() {
 		formState: { errors, isSubmitting }
 	} = useForm()
 
-	const SignIn = (values) => {
-		return new Promise((resolve) => {
-			setTimeout(() => {
-				alert(JSON.stringify(values, null, 2));
-				resolve();
-			},1);
-		});
+	const GetGoole = (values) => {
+		alert(values)
+		axios.get("/api/CreateUserGoogle")
 	}
 
 	return (
 		<div className="SignUpForm">
 			<Flex justifyContent="center">
-				<Box w="md" boxShadow="base" borderRadius="md" mt="50px">
+				<Box w="lg" boxShadow="base" borderRadius="sm" mt="50px">
 					<Box p="5">
-						<Heading mb="15" size="md">Sign Up</Heading>
-						<Box className="Form">
-							<form onSubmit={handleSubmit(SignIn)}>
-								<FormControl id="useremail" mt="15">
-									<FormLabel>Email</FormLabel>
-									<Input placeholder="Email" id="email" {...register("email")} type="email" />
-								</FormControl>
-
-								<FormControl id="username" mt="15">
-									<FormLabel>Name</FormLabel>
-									<Input placeholder="Name" {...register("name")} type="text" />
-								</FormControl>
-
-								<FormControl id="userpassword" mt="15">
-									<FormLabel>Passoword</FormLabel>
-									<InputGroup>
-										<Input type={showPassword ? "text" : "password"} placeholder="Password" {...register("password")} />
-										<InputRightElement width="4.5rem">
-											<Button h="1.75rem" size="sm" onClick={handlePasswordClick}>
-												{showPassword ? "Hide" : "Show"}
-											</Button>
-										</InputRightElement>
-									</InputGroup>
-								</FormControl>
-
-								<Box className="SignUpButton" mt="15" justifyContent="center">
-									<Flex justifyContent="space-evenly">
-										<Button w="md" type="submit" isLoading={isSubmitting}>Sign Up</Button>
-									</Flex>
+						<Heading size="md">Sign Up</Heading>
+						<Box className="SignUpButtons" mt="5">
+							<Flex justifyContent="center" wrap="wrap">
+								<Button colorScheme="red" w="lg" variant="outline" borderRadius="sm" mt="1"
+								onClick={GetGoole}>Google</Button>
+								<Button colorScheme="facebook" w="lg" variant="outline" borderRadius="sm" mt="1">Facebook</Button>
+								<Button colorScheme="twitter" w="lg" variant="outline" borderRadius="sm" mt="1">Github</Button>
+							</Flex>
+						</Box>
+						<Box mt="15" fontSize="sm" className="TermsAndPrivacy">
+							By continuing with Google, Github, and Facebook, you agree to our
+							<Link color="gray"> Privacy Policy</Link> and <Link color="gray">Terms of Service</Link>
+						</Box>
+						<Divider mt="15" />
+						<Box mt="15" fontSize="sm" className="AlreadySignedUp">
+							<Flex justifyContent="center">
+								<Box>
+									If you already Signed Up <Link color="gray"> Go Here To Login</Link>
 								</Box>
-
-							</form>
-
-						</Box>
-
-						<Divider orientation="horizontal" mt="15" />
-
-						<Box className="LoginWithOthers">
-							<Flex mt="15" justifyContent="space-evenly" wrap="wrap">
-								<Button w="lg" mt="1" colorScheme="red" leftIcon={<GoogleLogoSmall />}>Google</Button>
-								<Button w="lg" mt="1" colorScheme="blue" leftIcon={<FacebookLogoSmall />}>Facebook</Button>
-								<Button w="lg" mt="1" backgroundColor="black" color="white" colorScheme="blackAlpha" leftIcon={<GithubLogoSmall />}>Github</Button>
 							</Flex>
 						</Box>
 
-						<Divider orientation="horizontal" mt="15" />
-
-						<Box className="Support">
-							<Flex justifyContent="center" mt="15">
-								<Text>Support</Text>
-							</Flex>
-						</Box>
 					</Box>
 				</Box>
 			</Flex>
