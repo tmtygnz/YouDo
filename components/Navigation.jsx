@@ -26,7 +26,7 @@ export default function Navigation() {
 
 	return (
 		<div className="NavigationBar">
-			<Box p="5" pos="fixed" width="100vW" background="rgb(255 255 255 / 50%)" backdropFilter="saturate(180%) blur(5px" boxShadow="base" >
+			<Box p="5" pos="fixed" width="100vW" background="rgb(255 255 255 / 50%)" backdropFilter="saturate(180%) blur(3px)" boxShadow="base" >
 				<Flex mr="300px" ml="300px" justifyContent="space-between">
 					<Box p="2">
 						<Heading size="md">YouDo</Heading>
@@ -42,7 +42,7 @@ export default function Navigation() {
 							<MenuButton as={Link}>
 								Developers
 							</MenuButton>
-							<MenuList>
+							<MenuList >
 								<MenuItem>API Documentation</MenuItem>
 								<MenuItem>API Getting Started Guide</MenuItem>
 								<MenuItem>API Source Code</MenuItem>
