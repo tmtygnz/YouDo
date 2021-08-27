@@ -5,19 +5,23 @@ import {
 	Button,
 	Divider,
 	Heading,
-	Text,
-	FormErrorMessage
 } from '@chakra-ui/react'
 import React, { useState, set } from 'react'
-import {Goolge} from '../../util/CreateAccount'
+import { Goolge } from '../../util/CreateAccount'
+import Cookies from 'universal-cookie'
 
 export default function SignUp(props) {
 
+	const cookies = new Cookies();
+	let a = cookies.get('userdata')
+	console.log(a)
 	const [value, setValue] = useState()
 
 	const GetGoole = async (values) => {
 		let a = await Goolge()
 		setValue(JSON.stringify(a))
+		cookies.set('userdata', a, {path:'/'})
+		console.log(cookies.get('userdata'))
 	}
 
 	return (
@@ -29,12 +33,12 @@ export default function SignUp(props) {
 							<Heading size="md">Sign Up</Heading>
 							<Box className="SignUpButtons" mt="5">
 								<Flex justifyContent="center" wrap="wrap">
-									<Button colorScheme="red" w="lg" variant="outline" borderRadius="sm" mt="1"
+									<Button colorScheme="red" w="lg" variant="outline" borderRadius="xs" mt="1"
 										onClick={GetGoole}>Google</Button>
-									<Button colorScheme="facebook" w="lg" variant="outline" borderRadius="sm" mt="1"
-										isDisabled="true">Facebook</Button>
-									<Button colorScheme="twitter" w="lg" variant="outline" borderRadius="sm" mt="1"
-										isDisabled="true">Github</Button>
+									<Button colorScheme="facebook" w="lg" variant="outline" borderRadius="xs" mt="1"
+										isDisabled={true}>Facebook</Button>
+									<Button colorScheme="twitter" w="lg" variant="outline" borderRadius="xs" mt="1"
+										isDisabled={true}>Github</Button>
 								</Flex>
 							</Box>
 							<Box mt="15" fontSize="sm" className="TermsAndPrivacy">
@@ -45,7 +49,7 @@ export default function SignUp(props) {
 							<Box mt="15" fontSize="sm" className="AlreadySignedUp">
 								<Flex justifyContent="center">
 									<Box>
-										If you already Signed Up you can <Link color="gray"> go here to Login</Link>
+										tests
 									</Box>
 								</Flex>
 							</Box>

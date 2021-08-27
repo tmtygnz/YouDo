@@ -1,7 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react"
 
 function MyApp({ Component, pageProps }) {
-  return (
+	return (
 		<ChakraProvider>
 			<Component {...pageProps} />
 		</ChakraProvider>
